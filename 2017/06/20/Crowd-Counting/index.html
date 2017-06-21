@@ -253,7 +253,7 @@ This is a brief survey about crowd counting. Firstly, I will given some related 
 <li><p>Generating Ground Truth Heat Maps</p>
 <p>  Here I describe the method used in 4 in paper list. If there is a head at<br>  pixel \(x_i\) , we can denote this as \(\delta (x-x_i)\). Hence an image with \(N\) heads labeled can represented as a function:</p>
 <p>  $$H(x) = \sum_{i=1}^{N}\delta(x-x_i)$$ </p>
-<p>  To convert this to a continuous density function, we can convolve this<br>  function with a Gaussian kernel \(G<em>{ \sigma } \) . So the density can be<br>  formulated as \(F(x)=H(x)*G</em>{ \sigma }(x)\) . If you want to know more<br>  details, please refer to my <a href="https://github.com/BingzheWu/pytorch_crowd_count" target="_blank" rel="external">Project Page</a></p>
+<p>  To convert this to a continuous density function, we can convolve this<br>  function with a Gaussian kernel \(G<em>{\sigma}\) . So the density can be<br>  formulated as \(F(x)=H(x)*G</em>{\sigma}(x)\) . If you want to know more<br>  details, please refer to my <a href="https://github.com/BingzheWu/pytorch_crowd_count" target="_blank" rel="external">Project Page</a></p>
 </li>
 <li><p>Data Augmentation</p>
 <p>  For data augmentation, we follow the method used in 3 in paper list. Firstly, we generate different scales images. Then, we crop 225x225 patches with 50% overlap from those different scales images.</p>
