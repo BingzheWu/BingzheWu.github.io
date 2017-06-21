@@ -10,7 +10,9 @@
 
     <!--Description-->
     
-        <meta name="description" content="Crowd Counting SurveyThis is a brief survey about crowd counting. Firstly, I will given some related papers with my comments from both deep learning a">
+        <meta name="description" content="Crowd Counting Survey
+
+This is a brief survey about crowd counting. Firstly, I will given some related papers with my comments from both deep learning">
     
 
     <!--Author-->
@@ -215,7 +217,9 @@
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <h2 id="Crowd-Counting-Survey"><a href="#Crowd-Counting-Survey" class="headerlink" title="Crowd Counting Survey"></a>Crowd Counting Survey</h2><p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script><br>This is a brief survey about crowd counting. Firstly, I will given some related papers with my comments from both deep learning and traditional perspectives.<br>Then I will list some public available datasets and benchmarks.</p>
+                <h2 id="Crowd-Counting-Survey"><a href="#Crowd-Counting-Survey" class="headerlink" title="Crowd Counting Survey"></a>Crowd Counting Survey</h2><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<p>This is a brief survey about crowd counting. Firstly, I will given some related papers with my comments from both deep learning and traditional perspectives.<br>Then I will list some public available datasets and benchmarks.</p>
 <p>Finally, I will give the most feasible method to predict the crowd density and explain the reasons.</p>
 <h3 id="Paper-List"><a href="#Paper-List" class="headerlink" title="Paper List"></a>Paper List</h3><ul>
 <li><p>Deep Learning based Methods</p>
@@ -251,8 +255,11 @@
 <p>  $$H(x) = \sum_{i=1}^{N}\delta(x-x_i)$$ </p>
 <p>  To convert this to a continuous density function, we can convolve this<br>  function with a Gaussian kernel \(G<em>{ \sigma } \) . So the density can be<br>  formulated as \(F(x)=H(x)*G</em>{ \sigma }(x)\) . If you want to know more<br>  details, please refer to my <a href="https://github.com/BingzheWu/pytorch_crowd_count" target="_blank" rel="external">Project Page</a></p>
 </li>
+<li><p>Data Augmentation</p>
+<p>  For data augmentation, we follow the method used in 3 in paper list. Firstly, we generate different scales images. Then, we crop 225x225 patches with 50% overlap from those different scales images.</p>
+</li>
 </ul>
-<h2 id="To-be-Continued"><a href="#To-be-Continued" class="headerlink" title="To be Continued."></a>To be Continued.</h2>
+<h3 id="Network-Building"><a href="#Network-Building" class="headerlink" title="Network Building"></a>Network Building</h3><h2 id="To-be-Continued"><a href="#To-be-Continued" class="headerlink" title="To be Continued."></a>To be Continued.</h2>
 
                 
             </div>
