@@ -10,6 +10,8 @@
 
     <!--Description-->
     
+        <meta name="description" content="IntroductionUsing ML-Cloud is very convenient for most tasks, but for some tasks,you need to know all the details of the libraries installed on yourin">
+    
 
     <!--Author-->
     
@@ -18,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Bingzhe&#39;s Blog"/>
+        <meta property="og:title" content="Building docker development environment on Gcloud from scratch"/>
     
 
     <!--Open Graph Description-->
@@ -29,7 +31,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -40,7 +42,7 @@
 
     <!-- Title -->
     
-    <title>Archives: 2017/7 - Bingzhe&#39;s Blog</title>
+    <title>Building docker development environment on Gcloud from scratch - Bingzhe&#39;s Blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -158,75 +160,85 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('http://wx1.sinaimg.cn/mw690/0069EThFly1fgm97vr26aj31940u0b29.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>2017/7</h1>
+                <div class="post-heading">
+                    <h1>Building docker development environment on Gcloud from scratch</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2017-07-05
+                        
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
             
-                <div class="post-preview">
-    <a href="/2017/07/05/Building-docker-development-enviroment-on-Gcloud-from-scratch/">
-        <h1 class="post-title archive">
-            Building docker development environment on Gcloud from scratch
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2017-07-05
-    </p>
-</div>
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Using ML-Cloud is very convenient for most tasks, but for some tasks,<br>you need to know all the details of the libraries installed on your<br>instance. For example, if you want to build a tensorflow mobile<br>app for your mobile phone, you need the specified version of different<br>software, specified gcc, ndk, g++, even tensorflow version with specified<br>commit id in Github. In such a condition, you might need to build your<br>own customized instance. This blog gives a simple way to build your own<br>development env based docker.</p>
+<h1 id="About-Docker"><a href="#About-Docker" class="headerlink" title="About Docker"></a>About Docker</h1><p>In some contexts, the docker is similar with the instance in google cloud.<br>Developers use Docker to eliminate “works on my machine” , sounds like<br>build once, run anywhere. With docker, you can export images like google cloud,<br>to do this , you can share your own dev env with others. You can preserve<br>it on the docker hub. More details can seen in <a href="https://www.docker.com/what-docker" target="_blank" rel="external">Waht’s docker</a></p>
+<h1 id="How-to"><a href="#How-to" class="headerlink" title="How to"></a>How to</h1><p>Before start, one notice is that you may try to finish your work through<br>the <code>gcloud</code> command.</p>
+<h2 id="Create-an-Instance-with-GPU-support"><a href="#Create-an-Instance-with-GPU-support" class="headerlink" title="Create an Instance with GPU support."></a>Create an Instance with GPU support.</h2><ol>
+<li><p>Check your GPU limits </p>
+<blockquote>
+<p>gcloud beta compute regions describe asia-east1</p>
+</blockquote>
+<p> Notice these zones support GPU :us-west1-b, us-east1-d, europe-west1-b, asia-east1-a</p>
+<p> If this command doesn’t work, you might try <code>gcloud components update &amp;&amp; gcloud components install beta</code></p>
+</li>
+<li><p>Create an instance with GPUs</p>
+<p> run </p>
+<blockquote>
+<p>gcloud beta compute instances create jeju-projec-docker –zone asia-east1-a –accelerator type=nvidia-tesla-k80,count=1 –image-family ubuntu-1604-lts –image-project ubuntu-os-cloud –boot-disk-size 200GB –maintenance-policy TERMINATE –restart-on-failure</p>
+</blockquote>
+</li>
+<li><p>GPU dirver</p>
+<p> You can follow the official instructions from <a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="external">Nvidia</a>. If you are using Ubuntu, I recommend<br> you install cuda and its toolkit through deb file, it’s simplest way I have<br> tried.</p>
+<p> If you have an account of Nvidia developer, you can download cudnn<br> to accelerate your application.</p>
+</li>
+</ol>
+<h2 id="Build-Dev-Env"><a href="#Build-Dev-Env" class="headerlink" title="Build Dev Env"></a>Build Dev Env</h2><p>Firstly, you need to install docker through <code>sudo apt-get install docker &amp;&amp; sudo apt-get install docker.io</code></p>
+<p>After your installation, if you want to use tensorflow,<br>using <code>sudo docker search tensorflow</code> to search the tensorflow images.<br>You can see the most stared image if from google. You can run<br><code>sudo docker run -it tensorflow/tensorflow bash</code> to get in the image,<br>then, you can test import tensorflow.</p>
+<p>If you want to avoid to use sudo, you can add your account to docker<br>group.</p>
+<p>Similarly, you can search Pytorch through docker search command.</p>
+<p>If you want to use docker with GPU, you can install nvidia-docker<br>from <a href="https://github.com/NVIDIA/nvidia-docker" target="_blank" rel="external">here</a>, and replace<br>docker with nvidia-docker in the above commands.</p>
+<h1 id="To-be-continued"><a href="#To-be-continued" class="headerlink" title="To be continued."></a>To be continued.</h1>
+
+                
+            </div>
+
+            <!-- Comments -->
             
-                <div class="post-preview">
-    <a href="/2017/07/03/The-mountain-is-there/">
-        <h1 class="post-title archive">
-            The mountain is there
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2017-07-03
-    </p>
-</div>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
             
-                <div class="post-preview">
-    <a href="/2017/07/03/Project-updates-in-Jeju/">
-        <h1 class="post-title archive">
-            Project updates in Jeju
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2017-07-03
-    </p>
-</div>
-            
-            <div class="archive-before-pagination"></div>
-            <ul class="pager">
-    
-    
-</ul>
         </div>
     </div>
-</div>
-
+</article>
 
     <!-- Footer -->
     <hr />
