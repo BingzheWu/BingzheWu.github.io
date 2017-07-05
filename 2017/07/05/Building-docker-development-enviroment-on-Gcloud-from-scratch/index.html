@@ -201,18 +201,14 @@
 <h1 id="How-to"><a href="#How-to" class="headerlink" title="How to"></a>How to</h1><p>Before start, one notice is that you may try to finish your work through<br>the <code>gcloud</code> command.</p>
 <h2 id="Create-an-Instance-with-GPU-support"><a href="#Create-an-Instance-with-GPU-support" class="headerlink" title="Create an Instance with GPU support."></a>Create an Instance with GPU support.</h2><ol>
 <li><p>Check your GPU limits </p>
-<blockquote>
-<p>gcloud beta compute regions describe asia-east1</p>
-</blockquote>
-<p> Notice these zones support GPU :us-west1-b, us-east1-d, europe-west1-b, asia-east1-a</p>
+<pre><code>gcloud beta compute regions describe asia-east1
+</code></pre><p> Notice these zones support GPU :us-west1-b, us-east1-d, europe-west1-b, asia-east1-a</p>
 <p> If this command doesn’t work, you might try <code>gcloud components update &amp;&amp; gcloud components install beta</code></p>
 </li>
 <li><p>Create an instance with GPUs</p>
-<p> run </p>
-<blockquote>
-<p>gcloud beta compute instances create jeju-projec-docker –zone asia-east1-a –accelerator type=nvidia-tesla-k80,count=1 –image-family ubuntu-1604-lts –image-project ubuntu-os-cloud –boot-disk-size 200GB –maintenance-policy TERMINATE –restart-on-failure</p>
-</blockquote>
-</li>
+<p> Run </p>
+<pre><code>gcloud beta compute instances create jeju-projec-docker --zone asia-east1-a --accelerator type=nvidia-tesla-k80,count=1 --image-family ubuntu-1604-lts --image-project ubuntu-os-cloud --boot-disk-size 200GB --maintenance-policy TERMINATE --restart-on-failure
+</code></pre></li>
 <li><p>GPU dirver</p>
 <p> You can follow the official instructions from <a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="external">Nvidia</a>. If you are using Ubuntu, I recommend<br> you install cuda and its toolkit through deb file, it’s simplest way I have<br> tried.</p>
 <p> If you have an account of Nvidia developer, you can download cudnn<br> to accelerate your application.</p>
