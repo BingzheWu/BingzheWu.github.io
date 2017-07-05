@@ -210,7 +210,7 @@
 <pre><code>gcloud beta compute instances create jeju-projec-docker --zone asia-east1-a --accelerator type=nvidia-tesla-k80,count=1 --image-family ubuntu-1604-lts --image-project ubuntu-os-cloud --boot-disk-size 200GB --maintenance-policy TERMINATE --restart-on-failure
 </code></pre></li>
 <li><p>GPU dirver</p>
-<p> You can follow the official instructions from <a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="external">Nvidia</a>. If you are using Ubuntu, I recommend<br> you install cuda and its toolkit through deb file, it’s simplest way I have<br> tried.</p>
+<p> When you finish your creating, you can logging in your instance<br> through <code>gcloud compute ssh jeju-project-docker  --zone asia-east1-a</code><br> You can follow the official instructions from <a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="external">Nvidia</a>. If you are using Ubuntu, I recommend<br> you install cuda and its toolkit through deb file, it’s simplest way I have tried.</p>
 <p> If you have an account of Nvidia developer, you can download cudnn<br> to accelerate your application.</p>
 </li>
 </ol>
